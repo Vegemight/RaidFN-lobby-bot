@@ -4,7 +4,9 @@ RaidFN lobby bot for fortnite
 COMMANDS
 
 !skin - sets skin
+
 !emote - sets emote
+
 !level - sets level
 
 I plan on adding for feachers in the future.
