@@ -1,5 +1,5 @@
 # RaidFN-lobby-bot
-RaidFN lobby bot for fortnite
+lobby bot for fortnite
 
 COMMANDS
 
