@@ -10,7 +10,7 @@ COMMANDS
 !level - sets level
 
 
-I plan on adding for feachers in the future.
+I plan on adding for features in the future.
 
 Join the discord!
 discord.gg/2VmQTQVe3B
