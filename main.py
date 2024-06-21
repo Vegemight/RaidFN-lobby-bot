@@ -115,7 +115,41 @@ async def level(ctx, level: int):
     except Exception as e:
         await ctx.send(f"Failed to set season level: {e}")
         print(f"Failed to set season level: {e}")
+@bot.command()
+async def crowns(ctx, amount: int):
+    try:
+       meta = client.party.me.meta
+        data = (meta.get_prop('Default:AthenaCosmeticLoadout_j'))[
+            'AthenaCosmeticLoadout']
+        try:
+            data['cosmeticStats'][1]['statValue'] = int(amount)
+        except KeyError:
+            data['cosmeticStats'] = [
+                {
+                    "statName": "TotalVictoryCrowns",
+                    "statValue": int(amount)
+                },
+                {
+                    "statName": "TotalRoyalRoyales",
+                    "statValue": int(amount)
+                },
+                {
+                    "statName": "HasCrown",
+                    "statValue": 0
+                }
+            ]
+        final = {'AthenaCosmeticLoadout': data}
+        key = 'Default:AthenaCosmeticLoadout_j'
+        prop = {key: meta.set_prop(key, final)}
 
+        await client.party.me.patch(updated=prop)
+        await client.party.me.clear_emote()
+        await asyncio.sleep(1)
+        await client.party.me.set_emote(asset="EID_Coronet.EID_Coronet")
+        return await ctx.send(f"Set Crown Wins To: {amount}")
+    except Exception as e:
+        await ctx.send(f"Failed to set Crown Wins: {e}")
+        print(f"Failed to set Crown Wins: {e}")
 @bot.command()
 async def discord(ctx):
     await ctx.send("https://discord.gg/2VmQTQVe3B")
