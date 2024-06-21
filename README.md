@@ -9,6 +9,9 @@ COMMANDS
 
 !level - sets level
 
+!hologram - sets to starwar skin
+
+
 
 I plan on adding for features in the future.
 

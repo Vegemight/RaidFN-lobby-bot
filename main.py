@@ -5,6 +5,7 @@ import aiohttp
 import time
 from fortnitepy.party import ReadyState
 from fortnitepy.ext import commands as fortnite_commands
+import asyncio
 
 print("""
 █████████████████████████████████████
@@ -115,7 +116,16 @@ async def level(ctx, level: int):
     except Exception as e:
         await ctx.send(f"Failed to set season level: {e}")
         print(f"Failed to set season level: {e}")
-
+@bot.command()
+async def hologram(ctx):
+    try:
+        await bot.party.me.set_outfit(
+            asset='CID_VIP_Athena_Commando_M_GalileoGondola_SG'
+        )
+        await ctx.send(f"set skin as hologram")
+    except Exception as e:
+        await ctx.send(f"Failed to set hologram: {e}")
+        print(f"Failed to set hologram: {e}")
 @bot.command()
 async def discord(ctx):
     await ctx.send("https://discord.gg/2VmQTQVe3B")
