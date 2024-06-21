@@ -5,6 +5,7 @@ import aiohttp
 import time
 from fortnitepy.party import ReadyState
 from fortnitepy.ext import commands as fortnite_commands
+import asyncio
 
 print("""
 █████████████████████████████████████
@@ -116,40 +117,15 @@ async def level(ctx, level: int):
         await ctx.send(f"Failed to set season level: {e}")
         print(f"Failed to set season level: {e}")
 @bot.command()
-async def crowns(ctx, amount: int):
+async def hologram(ctx):
     try:
-       meta = client.party.me.meta
-        data = (meta.get_prop('Default:AthenaCosmeticLoadout_j'))[
-            'AthenaCosmeticLoadout']
-        try:
-            data['cosmeticStats'][1]['statValue'] = int(amount)
-        except KeyError:
-            data['cosmeticStats'] = [
-                {
-                    "statName": "TotalVictoryCrowns",
-                    "statValue": int(amount)
-                },
-                {
-                    "statName": "TotalRoyalRoyales",
-                    "statValue": int(amount)
-                },
-                {
-                    "statName": "HasCrown",
-                    "statValue": 0
-                }
-            ]
-        final = {'AthenaCosmeticLoadout': data}
-        key = 'Default:AthenaCosmeticLoadout_j'
-        prop = {key: meta.set_prop(key, final)}
-
-        await client.party.me.patch(updated=prop)
-        await client.party.me.clear_emote()
-        await asyncio.sleep(1)
-        await client.party.me.set_emote(asset="EID_Coronet.EID_Coronet")
-        return await ctx.send(f"Set Crown Wins To: {amount}")
+        await bot.party.me.set_outfit(
+            asset='CID_VIP_Athena_Commando_M_GalileoGondola_SG'
+        )
+        await ctx.send(f"set skin as hologram")
     except Exception as e:
-        await ctx.send(f"Failed to set Crown Wins: {e}")
-        print(f"Failed to set Crown Wins: {e}")
+        await ctx.send(f"Failed to set hologram: {e}")
+        print(f"Failed to set hologram: {e}")
 @bot.command()
 async def discord(ctx):
     await ctx.send("https://discord.gg/2VmQTQVe3B")

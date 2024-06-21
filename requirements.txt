@@ -2,3 +2,4 @@ fortnitepy
 aiohttp
 pytz
 aioconsole
+asyncio
